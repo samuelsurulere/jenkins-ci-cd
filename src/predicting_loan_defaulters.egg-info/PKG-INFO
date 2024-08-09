@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: predicting-loan-defaulters
+Version: 1.0.0
+Summary: Model to predict borrowers that will default payment
+Home-page: https://github.com/samuelsurulere/loan_prediction
+Author: Samuel Surulere
+Author-email: drsamuelsurulere@gmail.com
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.10.0
+Description-Content-Type: text/markdown
+Requires-Dist: numpy==1.26.4
+Requires-Dist: pandas==2.1.4
+Requires-Dist: scipy==1.11.4
+Requires-Dist: scikit-learn==1.4.1.post1
+Requires-Dist: pytest==8.2.2
+Requires-Dist: setuptools==68.2.2
+Requires-Dist: wheel==0.41.2
+Requires-Dist: mlflow==2.13.2
+Requires-Dist: streamlit==1.32.2
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: gunicorn
+Requires-Dist: imbalanced-learn
+
+Model to predict borrowers that will default payment
