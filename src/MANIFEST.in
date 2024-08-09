@@ -20,3 +20,4 @@ recursive-exclude * *.py[co]
 exclude ./predicting_loan_defaulters/dataset/loan_default.csv
 exclude .pytest_cache
 exclude ./mlruns
+exclude build

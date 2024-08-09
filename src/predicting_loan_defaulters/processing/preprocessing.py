@@ -35,18 +35,25 @@ class ClassImbalance(BaseEstimator, TransformerMixin):
     def __init__(self, sampling_strategy='auto', cluster_balance_threshold=0.1):
         self.sampling_strategy = sampling_strategy
         self.cluster_balance_threshold = cluster_balance_threshold
+        self.smote = None
     
-    # return the transformer
     def fit(self, X, y=None):
-        return self
-    
-    def transform(self, X, y=None):
         if y is None:
-            raise ValueError("y cannot be None for ClassImbalance transform method.")
+            raise ValueError("y cannot be None for ClassImbalance fit method.")
         
         self.smote = KMeansSMOTE(
             sampling_strategy=self.sampling_strategy,
             cluster_balance_threshold=self.cluster_balance_threshold,
-            )
+        )
+        self.smote.fit_resample(X, y)
+        return self
+    
+    def transform(self, X, y=None):
+        if self.smote is None:
+            raise ValueError("ClassImbalance has not been fitted yet.")
+        
+        if y is None:
+            raise ValueError("y cannot be None for ClassImbalance transform method.")
+        
         X_resampled, y_resampled = self.smote.fit_resample(X, y)
         return X_resampled, y_resampled

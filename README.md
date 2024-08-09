@@ -4,9 +4,19 @@ This project is based on predicting if a customer will default on a requested lo
 
 ### Command to run the deployed app in docker container
 
-        docker build -f Dockerfile -t loan-defaulter:1.0 .
+        docker build -t jenkins-ci-cd:latest .
 
         docker run -p 8501:8501 --name streamlit_app loan-defaulter:1.0
+
+        docker push jenkins-ci-cd:latest
+
+        docker exec web_app python predicting_loan_defaulters/training_pipeline.py
+
+        docker exec web_app pytest -v --junitxml testResults.xml .
+
+        docker cp web_app:/code/src/testResults.xml .
+
+        docker exec -d -w /code web_app python main.py
 
 
 

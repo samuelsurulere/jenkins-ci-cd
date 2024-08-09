@@ -1,30 +1,31 @@
-# syntax=docker/dockerfile:1
-
 # Base image
 FROM python:3.11-slim-buster
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Updating the package list
 RUN pip3 install --upgrade pip
 
 # Copying all the files to the source directory
-COPY . /loan_defaulter_prediction
+COPY . /code
 
-# Setting the working directory
-WORKDIR /loan_defaulter_prediction
+# Set permissions for the code directory
+RUN chmod +x /code/src
 
 # Installing the dependencies
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r code/src/requirements.txt
 
 # Exposing the port that Streamlit runs on
-EXPOSE 8501
+EXPOSE 8080
 
-# Check if the app is running
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
+# Setting the working directory
+WORKDIR /code/src
 
-# Define the network port that this container will listen on at runtime.
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Giving Python access to all the executable files by adding them to the PATH
+ENV PYTHONPATH "${PYTHONPATH}:/code/src"
 
 # Run the Streamlit app
-CMD ["app.py"]
-
-# https://medium.com/@ishaterdal/deploying-a-streamlit-app-with-docker-db40a8dec84f for pushing and deploying the docker image to Docker Hub
+CMD pip3 install -e .
