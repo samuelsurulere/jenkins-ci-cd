@@ -27,5 +27,5 @@ WORKDIR /code/src
 # Giving Python access to all the executable files by adding them to the PATH
 ENV PYTHONPATH "${PYTHONPATH}:/code/src"
 
-# Run the Streamlit app
+# Run the Streamlit app (installs the model packages)
 CMD pip3 install -e .

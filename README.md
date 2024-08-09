@@ -18,6 +18,8 @@ This project is based on predicting if a customer will default on a requested lo
 
         docker exec -d -w /code web_app python main.py
 
+Number 3 is currently not working. Still trying to figure out how to push docker build to docker hub
+
 
 
 Example of JSON 
