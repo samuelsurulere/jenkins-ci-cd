@@ -14,7 +14,7 @@ import predicting_loan_defaulters.processing.preprocessing as pp
 classification_pipeline = Pipeline(
     [
         ('LabelEncoder', pp.LabelEncoder(variables=config.FEATURES_TO_ENCODE)),
-        ('ClassImbalance', pp.ClassImbalance()),
+        # ('ClassImbalance', pp.ClassImbalance()),
         # ('Normalizer', preprocessor),
         ('StandardScale', StandardScaler()),
         ('GradientBoosting', GradientBoostingClassifier(learning_rate=0.04666566321361543, max_depth=7, n_estimators=882, subsample=0.45606998421703593)),

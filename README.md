@@ -6,7 +6,9 @@ This project is based on predicting if a customer will default on a requested lo
 
         docker build -t jenkins-ci-cd:latest .
 
-        docker run -p 8501:8501 --name streamlit_app loan-defaulter:1.0
+        docker run -d -it --name web_app -p 8080:8080 jenkins-cicd:latest bash
+        
+        docker push sammiguy/my-jenkins-project:tagname
 
         docker push jenkins-ci-cd:latest
 
@@ -17,6 +19,12 @@ This project is based on predicting if a customer will default on a requested lo
         docker cp web_app:/code/src/testResults.xml .
 
         docker exec -d -w /code web_app python main.py
+
+To push the docker image to Docker hub, follow these steps:
+
+        docker tag <username>/<repository_name> <username>/<new_repo_name>
+        docker login -u <username> -p <password>
+        docker push <username>/<new_repo_name>
 
 Number 3 is currently not working. Still trying to figure out how to push docker build to docker hub
 
