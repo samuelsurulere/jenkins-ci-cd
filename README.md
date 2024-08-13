@@ -14,7 +14,7 @@ This project is based on predicting if a customer will default on a requested lo
 
         docker exec web_app python predicting_loan_defaulters/training_pipeline.py
 
-        docker exec web_app pytest -v --junitxml testResults.xml .
+        docker exec web_app pytest -v --junitxml testResults.xml --cache-clear
 
         docker cp web_app:/code/src/testResults.xml .
 

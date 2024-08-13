@@ -1,10 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import uvicorn, gunicorn
+import uvicorn
 from predicting_loan_defaulters.predict import generate_predictions
-import numpy as np
-import pandas as pd
 
 
 app = FastAPI(
